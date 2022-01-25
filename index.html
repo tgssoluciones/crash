@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <link rel="stylesheet" href="style/sweetalert2.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+    <link rel="manifest" href="img/icon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="img/icon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <META NAME="DC.Language" SCHEME="RFC1766" CONTENT="Spanish">
+    <META NAME="AUTHOR" CONTENT="Emanuel Cejas">
+    <META NAME="REPLY-TO" CONTENT="emawritz@gmail.com">
+    <LINK REV="made" href="mailto:emawritz@gmail.com">
+    <META NAME="description"
+        CONTENT="Crash Restobar. Contamos con las mejores hamburgesas! Sucursales Rafael Calzada y Claypole. Pedi super rapido!">
+    <META NAME="KEYWORDS"
+        CONTENT="Hamburgesas,Rafael Calzada,Claypole,Crash Calzada,Crash Claypole,Hamburgesas Rafael Calzada">
+    <META NAME="Resource-type" CONTENT="Document">
+    <META NAME="Revisit-after" CONTENT="15 days">
+    <META NAME="robots" content="ALL">
+    <title>Crash</title>
+</head>
+<body>
+    <!-- <main style="color: white;">No estamos tomando pedidos</main> -->
+    <main>
+        <div class="preloader"></div>
+
+        <div class="modal" id="pedido" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="pedido2" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable" style="width: 90%;margin: auto;">
+                <div class="modal-content shadow-lg">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pedido2">Mi Pedido</h5>
+                        <button class="btn fas fa-times-circle cerrarmodal" data-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="store">
+                            <div id="carrito">
+                                <table id="lista-carrito" class="table table-responsive- table-borderless" style="color: white; margin-bottom: -10px;">
+                                    <thead style="border-color: transparent;">
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <input class="text-center" id="total" name="monto" readonly ></input>
+                        </div>
+                        <div class="modal-buttons">
+                            <a href="#" id="vaciar-carrito" class="btn shadow">Vaciar<i class="fas fa-trash-alt" style="color: rgb(202, 128, 0);"></i></a>
+                            <a href="#" id="procesar-pedido" class="btn shadow">Procesar<i class="fas fa-check" style="color: rgb(64, 155, 4);"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="soporte" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="soporte2" aria-hidden="true" >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="soporte2">Soporte</h5>
+                        <button class="btn fas fa-times-circle cerrarmodal" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>
+                            <i class="fas fa-exclamation-circle" id="icono-modal" style="color: rgb(255, 208, 0);"></i><br>
+                            Consultar estado de mi pedido
+                            <br>
+                            <a href="https://wa.link/e56cm4" id="estado" class="btn"
+                                style="border-color: rgb(255, 208, 0);">Estado</a>
+                        </h5>
+                        <h5>
+                            <i class="fas fa-times" id="icono-modal" style="color: rgb(255, 0, 0);"></i><br>
+                            Cancelar mi pedido
+                            <br>
+                            <a href="https://wa.link/4337du" id="cancelar" class="btn"
+                                style="border-color: rgb(255, 0, 0);">Cancelar</a>
+                        </h5>
+                        <h5>
+                            <i class="fas fa-pen" id="icono-modal" style="color: rgb(0, 164, 52);"></i><br>
+                            Modificar mi pedido
+                            <br>
+                            <a href="https://wa.link/6ub5wd" id="modificar" class="btn"
+                                style="border-color: rgb(0, 164, 52);">Modificar</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <article id="lista-productos">
+
+        <div class="modal" id="Cheesburger" tabindex="-1" role="dialog" aria-labelledby="Cheesburger"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content"style="background-size: 850px; background-image: url(img/img2.webp); background-position: 10% 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header" style="margin-bottom: -40px;">
+                            <a class="close" color='black' data-dismiss="modal" aria-label="Close"
+                                style="color: white"><i class="fas fa-times-circle" style="color: white"></i></a>
+                        </div>
+                            <div >
+                                <h5 class="card-title-3" >Cheese</h5>
+                                <p class="card-text">Cheddar.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50" id="inputs"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span id="price">400</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="10">Agregar</a>
+                                <br>
+                            </div>
+                            <div>
+                                <br>
+                                <h5 class="card-title-2"  data-id="11">Cheese Doble</h5>
+                                <p class="card-text" style="display: none">Cheddar.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span id="price">520</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                            <div>
+                                <br>
+                                <h5 class="card-title-2" >Cheese Triple</h5>
+                                <p class="card-text" style="display: none">Cheddar.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <h1 class="precio">$<span id="price">670</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="12">Agregar</a>
+                            </div>
+                            <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="Yankee" tabindex="-1" aria-labelledby="Yankee" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content"
+                    style=" background-size: 850px; background-image: url(img/YankeeS.webp); background-position: 10% 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header" style="margin-bottom: -40px;">
+                            <a class="close" color='black' data-dismiss="modal" aria-label="Close"
+                                style="color: white"><i class="fas fa-times-circle" style="color: white"></i></a>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <h5 class="card-title-3">Yankee</h5>
+                                <p class="card-text">Cheddar,Panceta.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>430</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="10">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" data-id="11" id="sombra">Yankee Doble</h5>
+                                <p class="card-text" style="display: none;">Cheddar,Panceta.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>550</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <br>
+                                <h5 class="card-title-2" id="sombra">Yankee Triple</h5>
+                                <p class="card-text" style="display: none;">Cheddar,Panceta.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>670</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="12">Agregar</a>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="Hot" tabindex="-1" role="dialog" aria-labelledby="Hot" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content"
+                    style=" background-size: 850px; background-image: url(img/Hot.webp); background-position: 10% 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header" style="margin-bottom: -40px;">
+                            <a class="close" color='black' data-dismiss="modal" aria-label="Close"
+                                style="color: white"><i class="fas fa-times-circle" style="color: white"></i></a>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <h5 class="card-title-3" id="sombra">Hot</h5>
+                                <p class="card-text" id="sombra">Cheddar,Huevo,Cebolla <br> Caramelizada,Salsa
+                                    Picante,Panceta.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>430</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="10">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" id="sombra" data-id="11">Hot Doble</h5>
+                                <p class="card-text" style="display: none;">Cheddar,Huevo,Cebolla <br>
+                                    Caramelizada,Salsa Picante,Panceta.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>550</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" id="sombra" data-id="11">Hot Triple</h5>
+                                <p class="card-text" style="display: none;">Cheddar,Huevo,Cebolla Caramelizada,Salsa
+                                    Picante,Panceta.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>670</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="Clasica" tabindex="-1" role="dialog" aria-labelledby="Clasica" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="color: rgb(255, 255, 255);">
+                <div class="modal-content"
+                    style=" background-size: 850px; background-image: url(img/ClasicaS.webp); background-position: 10% 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header" style="margin-bottom: -40px;">
+                            <a class="close" color='black' data-dismiss="modal" aria-label="Close"
+                                style="color: white"><i class="fas fa-times-circle" style="color: white"></i></a>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <h5 class="card-title-3" style="font-size: 43px;">Clasica</h5>
+
+                                <p class="card-text">Jamon, Cheddar, Huevo, Lechuga y Tomate.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>430</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="10">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" data-id="11">Clasica Doble</h5>
+                                <p class="card-text" style="display: none;">Jamon,Cheddar, Huevo,Lechuga y Tomate.
+                                </p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>550</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" data-id="11">Clasica Triple</h5>
+                                <p class="card-text" style="display: none;">Jamon,Cheddar, Huevo,Lechuga y Tomate.
+                                </p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>670</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="Bomba" tabindex="-1" role="dialog" aria-labelledby="Bomba" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content"
+                    style=" background-size: 850px; background-image: url(img/BombaS.webp); background-position: 10% 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header" style="margin-bottom: -40px;">
+                            <a class="close" color='black' data-dismiss="modal" aria-label="Close"
+                                style="color: white"><i class="fas fa-times-circle" style="color: white"></i></a>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <h5 class="card-title-3">Bomba</h5>
+
+                                <p class="card-text">2 Medallones,Cheddar,Huevo, <br> Cebolla Caramelizada,Salsa
+                                    Barbacoa.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>500</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="10">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" data-id="11">Bomba Triple</h5>
+                                <p class="card-text" style="display: none;"></p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>620</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="Crash" tabindex="-1" role="dialog" aria-labelledby="Crash" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="color: rgb(255, 255, 255);">
+                <div class="modal-content"
+                    style=" background-size: 850px; background-image: url(img/CrashS.webp); background-position: 10% 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header" style="margin-bottom: -40px;">
+                            <a class="close" color='black' data-dismiss="modal" aria-label="Close"
+                                style="color: white"><i class="fas fa-times-circle" style="color: white"></i></a>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <h5 class="card-title-3">Crash</h5>
+
+                                <p class="card-text">2 Medallones,Cheddar,Queso,<br> Morron Asado,Panceta,Cebolla
+                                    Crispy,Mayonesa Crash.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>500</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="10">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" data-id="11">Crash Triple</h5>
+                                <p class="card-text" style="display: none;">3 Medallones,Cheddar,Queso,orron
+                                    Asado,Bacon,Cebolla Crispy,Mayonesa Crash.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>620</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="Bigcrash" tabindex="-1" role="dialog" aria-labelledby="Bigcrash" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content"
+                    style=" background-size: 850px; background-image: url(img/bigcrashS.webp); background-position: 10% 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header" style="margin-bottom: -40px;">
+                            <a class="close" color='black' data-dismiss="modal" aria-label="Close"
+                                style="color: white"><i class="fas fa-times-circle" style="color: white"></i></a>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <h5 class="card-title-3">BigCrash</h5>
+
+                                <p class="card-text">2 Medallones,Cheddar, Pepinillos,Lechuga,Thousand Island Salsa.
+                                </p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>500</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="10">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" data-id="11">BigCrash Triple</h5>
+                                <p class="card-text" style="display: none;">3 Medallones,Cheddar,
+                                    Pepinillos,Lechuga,Thousand Island Salsa.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>620</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="Cuarto" tabindex="-1" role="dialog" aria-labelledby="Cuarto" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content"
+                    style=" background-size: 850px; background-image: url(img/silueta.webp); background-position: 10% 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header" style="margin-bottom: -40px;">
+                            <a class="close" color='black' data-dismiss="modal" aria-label="Close"
+                                style="color: white"><i class="fas fa-times-circle" style="color: white"></i></a>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <h5 class="card-title-3">Cuarto de Libra</h5>
+                                <p class="card-text">Cheddar,Cebolla y Salsa Cuarto de Libra. </p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>430</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="10">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" data-id="11">1/4 Doble</h5>
+                                <p class="card-text" style="display: none;">Cheddar,Huevo,Cebolla <br>
+                                    Caramelizada,Salsa Picante,Panceta.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>550</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <br>
+                                <h5 class="card-title-2" id="sombra" data-id="11">1/4 Triple</h5>
+                                <p class="card-text" style="display: none;">Cheddar,Huevo,Cebolla Caramelizada,Salsa
+                                    Picante,Panceta.</p>
+                                <input type="text" name="quitar" class="boxtext" maxlength="50"
+                                    placeholder="Deseas quitarle algo?">
+                                <br>
+                                <h1 class="precio">$<span>670</span></h1>
+                                <a class="btn btn-danger agregar-carrito btn-sm" id="botones2"
+                                    data-id="11">Agregar</a>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-lg">
+
+            <nav class="mobile-bottom-nav shadow" >
+                        <div class="mobile-bottom-nav__item mobile-bottom-nav__item">
+                            <div class="mobile-bottom-nav__item-content"  data-toggle="modal" data-target="#soporte">
+                                <i class="fab fa-whatsapp"></i>
+                                Soporte
+                            </div>		
+                        </div>
+                        <div class="mobile-bottom-nav__item" id="nav-main" data-toggle="modal" data-target="#pedido">		
+                            <div class="mobile-bottom-nav__item-content">
+                                <i class="fas fa-clipboard-list"></i>
+                                Pedido
+                            </div>
+                        </div>
+            </nav>
+            <div class="back" onclick="location.href='/index.html';">
+                <button class="btn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <img src="img/lg.png" alt="logo-crash" class="logo">
+            <div class="state-close shadow" id="close">
+                <h6 class="state-text">CERRADO</h6>
+            </div>
+            <div class="state-open shadow" id="open">
+                <h6 class="state-text">Abierto</h6>
+            </div>
+<!-- 
+            <div class="alerta">
+                <h5><i class="fas fa-exclamation-triangle"></i></h5>
+                Cerrado Por Hoy!
+            </div> -->
+
+            <div class="head shadow">
+                <h6 class="categoria">Hamburguesas</h6>
+                <h6 class="subcate">Los combos incluyen papas</h6>
+                <a href="#otros2"><h6 class="categoria2">OTROS<br><i class="fas fa-chevron-down" style="margin-right: 15px;"></i></h6></a>
+            </div>
+        </div>
+            <br>
+            <div class="container-lg" id="lista-productos">
+                <div class="row row-cols-2 row-cols-md-4 justify-content-md-center" id="grilla">
+                    <div class="col mb-4" >
+                        <div class="card shadow" data-toggle="modal" data-target="#Cheesburger">
+                            <div class="card-img-top" style="width: auto;">
+                                <img src="img/img2.webp" id="hamburg" class="cheese" alt="cheeseburger-crashrestobar">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title" id="title">Cheese</h5>
+                            </div>
+                            <button type="button" class="btn shadow btn-sm" id="botonescard">
+                                <img src="img/iconbrg3.png" style="float: rihgt;" class="btnburga">
+                            </button>
+                        </div>
+                    </div>
+
+<!-- -------------- YANKEE --------------- -->
+
+                    <div class="col mb-4">
+                        <div class="card shadow"  data-toggle="modal" data-target="#Yankee">
+                            <div class="card-img-top" style="width:auto;">
+                                <img src="img/YankeeS.webp" id="hamburg" class="yankee" alt="yankee-crashrestobar">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title" id="title">Yankee</h5>
+                            </div>
+                            <button type="button" class="btn shadow btn-sm" id="botonescard">
+                                <img src="img/iconbrg3.png" class="btnburga">
+                            </button>
+                        </div>
+                    </div>
+
+<!-- -------------- HOT --------------- -->
+
+                    <div class="col mb-4">
+                        <div class="card shadow"  data-toggle="modal" data-target="#Hot">
+                            <div class="card-img-top" style="width: auto;">
+                                <img src="img/Hot.webp" id="hamburg" class="hot" alt="bomba-crashrestobar">
+                            </div>
+                            <div class="card-body" >
+                                <h5 class="card-title" id="title">Hot</h5>
+                            </div>
+                            <button type="button" class="btn shadow btn-sm" id="botonescard">
+                                <img src="img/iconbrg3.png" class="btnburga">
+                            </button>
+                        </div>
+                    </div>
+
+<!-- -------------- CLASICA --------------- -->
+
+                    <div class="col mb-4">
+                        <div class="card shadow"  data-toggle="modal" data-target="#Clasica">
+                            <div class="card-img-top" style="width: auto;">
+                                <img src="img/ClasicaS.webp" id="hamburg" class="clasica2" alt="clasica-crashrestobar">
+                            </div>
+                            <div class="card-body" >
+                                <h5 class="card-title" id="title">Clasica</h5>
+                            </div>
+                            <button type="button" class="btn shadow btn-sm" id="botonescard">
+                                <img src="img/iconbrg3.png" class="btnburga">
+                            </button>
+                        </div>
+                    </div>
+
+<!-- -------------- BOMBA --------------- -->
+
+                    <div class="bomba col mb-4" id="bomba">
+                        <div class="card shadow" data-toggle="modal" data-target="#Bomba">
+                            <div class="card-img-top" style="width: auto;">
+                                <img src="img/BombaS.webp" id="hamburg" class="bomba2" alt="bomba-crashrestobar">
+                            </div>
+                            <div class="card-body" >
+                                <h5 class="card-title" id="title">Bomba</h5>
+                            </div>
+                            <button type="button" class="btn shadow btn-sm" id="botonescard" >
+                                <img src="img/iconbrg3.png" class="btnburga">
+                            </button>
+                        </div>
+                    </div>
+
+<!-- -------------- CRASH --------------- -->
+
+                    <div class="col mb-4">
+                        <div class="card shadow" data-toggle="modal" data-target="#Crash">
+                            <div class="card-img-top" style="width: auto;">
+                                <img src="img/CrashS.webp" id="hamburg" class="crash" alt="crash-crashrestobar">
+                            </div>
+                            <div class="card-body" >
+                                <h5 class="card-title" id="title">Crash</h5>
+                            </div>
+                            <button type="button" class="btn shadow btn-sm" id="botonescard" >
+                                <img src="img/iconbrg3.png" class="btnburga">
+                            </button>
+                        </div>
+                    </div>
+
+<!-- -------------- BIGCRASH --------------- -->
+
+                    <div class="col mb-4">
+                        <div class="card shadow"  data-toggle="modal" data-target="#Bigcrash">
+                            <div class="card-img-top" style="width: auto;">
+                                <img src="img/bigcrashS.webp" id="hamburg" class="bigcrash" alt="bigcrash-crashrestobar">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title" id="title" style="margin-bottom: 10px; ">BigCrash</h5>
+                            </div>
+                            <button type="button" class="btn shadow btn-sm" id="botonescard">
+                                <img src="img/iconbrg3.png" class="btnburga">
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- -------------- 1/4 --------------- -->
+                    <div class="col mb-4">
+                        <div class="card shadow"  data-toggle="modal" data-target="#Cuarto">
+                            <div class="card-img-top" style="width: auto;">
+                                <img src="img/silueta.webp" id="hamburg" class="cuarto" alt="bigcrash-crashrestobar">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title" id="title" style="margin-bottom: 10px; ">1/4</h5>
+                            </div>
+                            <button type="button" class="btn shadow btn-sm" id="botonescard">
+                                <img src="img/iconbrg3.png" class="btnburga">
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- --------------------------------------------------------------------------------
+EXTRAS
+-------------------------------------------------------------------------------- -->
+
+
+                <a class="btn btn btn-light" data-toggle="collapse" href="#Extra" role="button" aria-expanded="false"
+                    aria-controls="Extra" id="nameothers2" style="padding-left: 50px; padding-right: 50px;">
+                    Extras a tus papas!
+                </a>
+                
+                <br>
+                <br>
+                <div class="collapse" id="Extra">
+                    <div class="container" id="lista-productos">
+                        <div class="row row-cols-2 row-cols-md-2 justify-content-md-center">
+                            <div class="col mb-4">
+                                <div class="card-2"  >
+                                    <h5 class="card-title-2" id="title2" style="margin-left: 20px;margin-right: 20px;">
+                                        Cheddar Panceta Verdeo </h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Extra ChedPanceVerde</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">110</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="17">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4">
+                                <div class="card-2 extracheddar"  >
+                                    <h5 class="card-title-2" id="title2">Cheddar
+                                    </h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Extra Cheddar</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">90</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="18">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="head">
+                    <h6 id="otros2" class="categoria">OTROS</h6>
+                </div>
+                <br>
+                <div class="row row-cols-2 row-cols-md-6 justify-content-md-center">
+                
+                <div class="col mb-4">
+                <a class="btn" data-toggle="collapse" href="#Sandwichs" role="button"
+                    aria-controls="Sandwichs" id="nameothers">Sandwichs</a>
+                </div>
+                <div class="col mb-4">
+                    <a class="btn" data-toggle="collapse" href="#Pizzas" role="button" aria-controls="Pizzas"
+                    id="nameothers">Pizzas</a>
+                </div>
+                <div class="col mb-4">
+                    <a class="btn " data-toggle="collapse" href="#Empanadas" role="button"
+                    aria-controls="Empanadas" id="nameothers">Empanadas</a>
+                </div>
+                <div class="col mb-4">
+                    <a class="btn" data-toggle="collapse" href="#Guarnicion" role="button"
+                    aria-controls="Guarnicion" id="nameothers">Guarniciones</a>
+                </div>
+                <div class="col mb-4">
+                    <a class="btn" data-toggle="collapse" href="#MilaP" role="button" aria-controls="MilaP"
+                    id="nameothers">Milanesas</a>
+                </div>
+                <div class="col mb-4">
+                    <a class="btn" data-toggle="collapse" href="#Picadas" role="button" aria-expanded="false"
+                    aria-controls="Picadas" id="nameothers">Picadas</a>
+                </div>
+
+                </div>
+               
+                <div class="collapse" id="Sandwichs">
+
+                    <div class="head-2 shadow"  style="margin-bottom: 20px;"  data-toggle="collapse" href="#Sandwichs" role="button"
+                    aria-controls="Sandwichs">
+                        <a class="categoria">Sandwichs | No Incluyen papas  <i class="far fa-times-circle close-2"></i></a>
+                    </div>
+
+                    <div class="container" id="lista-productos">
+                        <div class="row row-cols-2 row-cols-md-2">
+                            <div class="col mb-4 sandwichmila">
+                                <div class="card-2"   style="background-image: url(img/sandwichmila.webp);">
+                                    <h5 class="card-title-2" id="title2">Milanesa Completo
+                                    </h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Milanesa Completo</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">600</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="19">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 lomito">
+                                <div class="card-2"  
+                                    style="background-image: url(img/lomito.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Bondiola Completo
+                                    </h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Bondiola Completo</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">600</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="20">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 bondiola">
+                                <div class="card-2"  
+                                    style="background-image: url(img/bondiola.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Lomito Completo</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Lomito Completo</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">600</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="21">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 milacrash">
+                                <div class="card-2"  
+                                    style="background-image: url(img/milacrash.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2" style="margin-left: 5px; margin-right: 5px;">
+                                        Sandwich Crash</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Sandiwch Crash</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">600</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="22">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- -------------- PIZZAS --------------- -->
+
+                <div class="collapse" id="Pizzas">
+                    <div class="head-2 shadow"  style="margin-bottom: 20px;"  data-toggle="collapse" href="#Pizzas" role="button"
+                    aria-controls="Pizzas">
+                        <a class="categoria">Pizzas <i class="far fa-times-circle close-2"></i></a>
+                    </div>
+                    <div class="container" id="lista-productos">
+                        <div class="row row-cols-2 row-cols-md-3 justify-content-center" style="align-content: center;">
+                            <div class="col mb-4 muza">
+                                <div class="card-2 text-center"   loading="lazy" style="background-image: url(img/pizza.png); background-size: cover;background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Muzzarella</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Muzzarella</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">450</span></h2>
+                                        <a id="botones2" class="btn btn-sm btn-danger agregar-carrito"
+                                            data-id="23">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col mb-4 huevo">
+                                <div class="card-2"  
+                                    style="background-image: url(img/huevo.webp); background-size: cover;background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Huevo</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Huevo</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">500</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="25">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 calabresa">
+                                <div class="card-2"  
+                                    style="background-image: url(img/calabresa.webp); background-size: cover;background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Calabresa</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Calabresa</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">550</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="26">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 pizzacrash" id="ensa">
+                                <div class="card-2"  
+                                    style="background-image: url(img/papascaballo.webp); background-size: cover;background-position: center;">
+                                    <h5 class="card-title-2" id="title2">PizzaCrash</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Pizza Crash</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">550</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="27">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 morrones">
+                                <div class="card-2"  
+                                    style="background-image: url(img/morrones.webp); background-size: cover;background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Jamon & Morrones</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Jamon & Morrones</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">500</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="28">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 fugazza" id="ensa">
+                                <div class="card-2"  
+                                    style="background-image: url(img/fugazza.webp); background-size: cover;background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Fugazza Rellena</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Fugazza</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">600</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="29">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 fugazza" id="ensa">
+                                <div class="card-2"  
+                                    style="background-image: url(img/pizzanapo.webp); background-size: cover;background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Napolitana</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Pizza Napolitana</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">500</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="99">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- -------------- EMPANADAS --------------- -->
+                
+           
+            <div class="collapse" id="Empanadas">
+                
+                <div class="head-2 shadow"  style="margin-bottom: 20px;"  data-toggle="collapse" href="#Empanadas" role="button"
+                aria-controls="Empanadas">
+                    <a class="categoria">Empanadas<i class="far fa-times-circle close-2"></i></a>
+                </div>
+
+                <div class="container" id="lista-productos">
+                    <div class="row row-cols-2 row-cols-md-4">
+
+                        <div class="col mb-4 jq">
+                            <div class="card-2"style="background-image: url(img/jq.webp);">
+                                <h5 class="card-title-2" style="margin-bottom: -10px;" id="title2">J&Q</h5>
+                                <div class="card-body">
+                                    <h5 style="display: none;">1 Empanada J&Q</h5>
+                                    <input type="hidden">
+                                    <h2 class="precio" style="display: none;">$<span>100</span></h2>
+                                    <a class="btn agregar-carrito btn-block" data-id="201">1 - $100</a>
+                                </div>
+                                <div class="">
+                                    <div class="card-body" style="margin-top: -30px;">
+                                        <h5 class="card-title" style="display: none;">3 Empanadas J&Q</h5>
+                                        <input type="hidden">
+                                        <h1 style="display: none;" class="precio">$<span>300</span></h1>
+                                        <a class="btn agregar-carrito btn-block" data-id="202">3 - $300</a>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="card-body" style="margin-top: -30px;">
+                                        <h5 class="card-title" style="display: none;">6 Empanadas J&Q</h5>
+                                        <input type="hidden">
+                                        <h1 style="display: none;" class="precio">$<span>600</span></h1>
+                                        <a class="btn agregar-carrito btn-block" data-id="203">6 - $600</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col mb-4 carne">
+                            <div class="card-2"style="background-image: url(img/carne.webp);">
+                                <h5 class="card-title-2" style="margin-bottom: -10px;" id="title2">Carne</h5>
+                                <div class="card-body">
+                                    <h5 style="display: none;">1 Empanada Carne</h5>
+                                    <input type="hidden">
+                                    <h2 class="precio" style="display: none;">$<span>100</span></h2>
+                                    <a class="btn agregar-carrito btn-block"data-id="204">1 - $100</a>
+                                </div>
+                                <div class="">
+                                    <div class="card-body" style="margin-top: -30px;">
+                                        <h5 class="card-title" style="display: none;">3 Empanadas Carne</h5>
+                                        <input type="hidden">
+                                        <h1 style="display: none;" class="precio">$<span>300</span></h1>
+                                        <a class="btn agregar-carrito btn-block" data-id="205">3 - $300</a>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="card-body" style="margin-top: -30px;">
+                                        <h5 class="card-title" style="display: none;">6 Empanadas Carne</h5>
+                                        <input type="hidden">
+                                        <h1 style="display: none;" class="precio">$<span>600</span></h1>
+                                        <a class="btn agregar-carrito btn-block" data-id="206">6 - $600</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col mb-4 pollo">
+                            <div class="card-2"  
+                                style="background-image: url(img/pollo.png);">
+                                <h5 class="card-title-2" style="margin-bottom: -10px;" id="title2">Pollo</h5>
+                                <div class="card-body">
+                                    <h5 style="display: none;">1 Empanada Pollo</h5>
+                                    <input type="hidden">
+                                    <h2 class="precio" style="display: none;">$<span>100</span>
+                                    </h2>
+                                    <a class="btn agregar-carrito btn-block" data-id="207">1 - $100</a>
+                                </div>
+                                <div>
+                                    <div class="card-body" style="margin-top: -30px;">
+                                        <h5 class="card-title" style="display: none;">3 Empanadas Pollo</h5>
+                                        <input type="hidden">
+                                        <h1 style="display: none;" class="precio">$<span>300</span></h1>
+                                    <a class="btn agregar-carrito btn-block" data-id="208">3 - $300
+                                        </a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="card-body" style="margin-top: -30px;">
+                                        <h5 class="card-title" style="display: none;">6 Empanadas Pollo</h5>
+                                        <input type="hidden">
+                                        <h1 style="display: none;" class="precio">$<span>600</span></h1>
+                                        <a class="btn agregar-carrito btn-block" data-id="209">6 - $600</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col mb-4 verdura">
+                            <div class="card-2"  
+                                style="background-image: url(img/verdura.webp);">
+                                <h5 class="card-title-2" id="title2" style="margin-bottom: -10px;">Verdura</h5>
+                                <div class="card-body">
+                                    <h5 style="display: none;">1 Empanada Verdura</h5>
+                                    <input type="hidden">
+                                    <h2 class="precio" style="display: none;">$<span class="">100</span></h2>
+                                    <a class="btn agregar-carrito btn-block btn-emp" data-id="210">1 - $100</a>
+                                </div>
+                                <div class="">
+                                    <div class="card-body" style="margin-top: -30px;">
+                                        <h5 class="card-title" style="display: none;">3 Empanadas Verdura</h5>
+                                        <input type="hidden">
+                                        <h1 style="display: none;" class="precio">$<span>300</span></h1>
+                                        <a class="btn agregar-carrito btn-block btn-emp"data-id="211">3 - $300</a>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="card-body" style="margin-top: -30px;">
+                                        <h5 class="card-title" style="display: none;">6 Empanadas Verdura</h5>
+                                        <input type="hidden">
+                                        <h1 style="display: none;" class="precio">$<span>600</span></h1>
+                                        <a class="btn agregar-carrito btn-block btn-emp" data-id="212">6 - $600</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <!-- -------------- GUARNICIONES --------------- -->
+
+            
+              
+                <div class="collapse" id="Guarnicion">
+                    <div id="lista-productos guarnicion">
+                        <div class="head-2 shadow"  style="margin-bottom: 20px;"  data-toggle="collapse" href="#Guarnicion" role="button"
+                    aria-controls="Guarnicion">
+                        <a class="categoria">Guarniciones <i class="far fa-times-circle close-2"></i></a>
+                    </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col papasverdeo">
+                                <div class="card-2 papasextra"
+                                    style="background-image: url(img/papasverdeo.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Papas Cheddar Panceta Verdeo
+                                    </h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none">Papas Completas</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">500</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="34">Agregar</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-2 row-cols-md-4">
+                            <div class="col mb-4 papasfritas">
+                                <div class="card-2"  
+                                    style="background-image: url(img/papas.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Papas <br> Fritas
+                                    </h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Papas Fritas</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">400</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="34">Agregar</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 papascheddar">
+                                <div class="card-2"  
+                                    style="background-image: url(img/papascheddar.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Papas Solo <br> Cheddar</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Papas Solo Cheddar</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">500</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="35">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 papasprovenzal">
+                                <div class="card-2"  
+                                    style="background-image: url(img/papasprovenzal.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Papas <br> Provenzal</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Papas c/ Provenzal</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">450</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="36">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 papascaballo">
+                                <div class="card-2"
+                                    style="background-image: url(img/papascaballo.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Papas a <br> Caballo</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Papas a Caballo</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">450</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="37">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 ensalada">
+                                <div class="card-2"
+                                    style="background-image: url(img/ensalada.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" style="margin-top: 20px;" id="title2">Ensalada</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Ensalada</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" style="margin-bottom: 20px;" id="pr2">$<span
+                                                class="">400</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            style="margin-bottom: 5px;" data-id="38">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 papascono">
+                                <div class="card-2"
+                                    style="background-image: url(img/papascono.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Papas en <br> Cono</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Papas en <br> cono</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">300</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="39">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 aros">
+                                <div class="card-2"
+                                    style="background-image: url(img/aros.png); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Aros de <br> Cebolla</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Aros de Cebolla</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">500</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="40">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 bastones">
+                                <div class="card-2"
+                                    style="background-image: url(img/bastones.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Bastones Muzzarella</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Bastones Muzzarella</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">450</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="41">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -------------- MILANESASALPLATO --------------- -->
+                <div class="collapse" id="MilaP">
+
+                    <div class="head-2 shadow"  style="margin-bottom: 20px;"  data-toggle="collapse" href="#MilaP" role="button"
+                    aria-controls="MilaP">
+                        <a class="categoria">Milanesas | No Incluyen Papas <i class="far fa-times-circle close-2"></i></a>
+                    </div>
+
+                    <div class="container" id="lista-productos">
+                        <div class="row row-cols-2 row-cols-md-4 justify-content-md-center">
+                            <div class="col mb-4 napo">
+                                <div class="card-2"
+                                    style="background-image: url(img/pnapo.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Milanesa Napolitana
+                                    </h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Milanesa Napolitana</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">500</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="42">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 caballo">
+                                <div class="card-2"
+                                    style="background-image: url(img/pcaballo.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2" style="margin-left:20px; margin-right: 20px;">
+                                        Milanesa Caballo</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Milanesa Caballo</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">500</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="43">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 milasola">
+                                <div class="card-2"
+                                    style="background-image: url(img/mila.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Milanesa</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Milanesa</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">450</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="44">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 pmilacrash">
+                                <div class="card-2"
+                                    style="background-image: url(img/milacrash.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2">Mila Crash</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Milanesa Crash</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">500</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="46">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 milaguar">
+                                <div class="card-2"
+                                    style="background-image: url(img/papas.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2" style="margin-left: 20px; margin-right: 20px;">
+                                        Porcion Fritas</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Porcion Fritas</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">400</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="45">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 milaguar">
+                                <div class="card-2"
+                                    style="background-image: url(img/papas.webp); background-size: cover; background-position: center;">
+                                    <h5 class="card-title-2" id="title2" style="margin-left: 5px; margin-right: 5px;">
+                                        1/2 Porcion Fritas</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;"></h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">280</span></h2>
+                                        <a href="" id="botones2" class="btn btn-danger agregar-carrito btn-sm"
+                                            data-id="45">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -------------- PICADAS --------------- -->
+
+                <div class="collapse" id="Picadas">
+
+                    <div class="head-2 shadow"  style="margin-bottom: 20px;"  data-toggle="collapse" href="#Picadas" role="button"
+                    aria-controls="Picadas">
+                        <a class="categoria">Picadas</a>
+                    </div>
+
+                    <div class="container" id="lista-productos">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-2"
+                                    style="background-color: black; background-size: cover; background-position: center; color: white; border: 3px solid; border-color: white; background-image: url(img/picada.webp); background-position: center; background-size: cover; margin-bottom: 20px; border-radius: 20px; width: 90%; margin: auto;">
+                                    <h5 class="card-title-2" id="title2" style="font-size: 28px; margin-bottom: -6px;">
+                                        Picada Crash</h5>
+                                    <div class="card-body">
+                                        <p class="card-text" style="margin-bottom: 30px;line-height : 20px;">Papas
+                                            fritas, aros de cebolla, bastones de muzarella y salsas</p>
+                                        <h5 style="display: none;">Picada Crash</h5>
+                                        <input type="hidden">
+                                        <h2 class="precio" style="color: white; font-size: 22px;" id="pr2">$<span class="">500</span></h2>
+                                        <a id="botones2" class="btn btn-danger agregar-carrito" data-id="45" >Agregar</a>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -------------- BEBIDAS --------------- -->
+
+                <a class="btn btn-warning" data-toggle="collapse" href="#Bebidas" role="button" aria-expanded="false"
+                    aria-controls="Bebidas" id="nameothers">Bebidas</a>
+                <br>
+                <div class="collapse" id="Bebidas">
+                    <br>
+                    <div class="container" id="lista-productos">
+                        <div class="row row-cols-2 row-cols-md-3" style="align-content: center;">
+                            <div class="col mb-4 coca1">
+                                <div class="card-2"
+                                    style="background-image: url(img/Cocacola.webp); background-size: cover; background-position: 0% 70%;">
+                                    <h5 class="card-title-2" id="title2">Cocacola 1.5l</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Cocacola 1.5l</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">300</span></h2>
+                                        <a id="botones2" class="btn btn-sm btn-danger agregar-carrito"
+                                            data-id="23">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 coca2">
+                                <div class="card-2"
+                                    style="background-image: url(img/Cocacola.webp); background-size: cover; background-position: 0% 70%;">
+                                    <h5 class="card-title-2" id="title2">Cocacola 600ml</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Cocacola 600ml</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">200</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="25">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 sprite">
+                                <div class="card-2"
+                                    style="background-image: url(img/Sprite.webp); background-size: cover; background-position: 0% 70%;">
+                                    <h5 class="card-title-2" id="title2">Sprite 1.5ml</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Sprite 1.5ml</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">300</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="26">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 fanta" id="ensa">
+                                <div class="card-2"  
+                                    style="background-image: url(img/Fanta.webp); background-size: cover; background-position: 0% 70%;">
+                                    <h5 class="card-title-2" id="title2">Fanta 1.5ml</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Fanta 1.5ml</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">300</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="27">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 hein">
+                                <div class="card-2"
+                                    style="background-image: url(img/Heineken.webp); background-size: cover; background-position: 0% 70%;">
+                                    <h5 class="card-title-2" id="title2">Heineken Lata</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Heineken Lata</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">200</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="28">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mb-4 stella" id="ensa">
+                                <div class="card-2"
+                                    style="background-image: url(img/Stella.webp); background-size: cover; background-position: 0% 70%;">
+                                    <h5 class="card-title-2" id="title2">Stella Lata</h5>
+                                    <div class="card-body">
+                                        <h5 style="display: none;">Stella Lata</h5>
+                                        <input type="hidden" name="" id="">
+                                        <h2 class="precio" id="pr2">$<span class="">200</span></h2>
+                                        <a href="" id="botones2" class="botones5 btn btn-danger agregar-carrito btn-sm"
+                                            data-id="29">Agregar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <footer>
+                <p>Copyright © 2021 Crash | Emanuel Cejas</p>
+                </footer>
+    </main>
+
+    </article>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.querySelector(".preloader").style.display = "none";
+        }
+    </script>
+    <script defer src="js/carrito.js"></script>
+    <script defer src="js/pedido.js"></script>
+    <script src="lib/sweetalert2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+        var navItems = document.querySelectorAll(".mobile-bottom-nav__item");
+        navItems.forEach(function(e, i) {
+            e.addEventListener("click", function(e) {
+                navItems.forEach(function(e2, i2) {
+                    e2.classList.remove("mobile-bottom-nav__item--active");
+                })
+                this.classList.add("mobile-bottom-nav__item--active");
+            });
+        });
+    </script>
+    <script>
+          const now = new Date();
+            var hora = now.getHours();
+            var minutos = now.getMinutes();
+            var fecha = now.getDay();
+            var hs = hora.toString() + minutos.toString();
+            var hs = hs.slice(0, -1);
+            hs = parseInt(hs);
+            const open = document.getElementById("open");
+            const close = document.getElementById("close");
+            const nav = document.getElementById("nav-main");
+            if (fecha === 1) {
+                open.style.display='none';
+                nav.style.display='none';
+                close.style.display='';
+            } else if (hora === 19) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            } else if (hora === 12) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            } else if (hora === 14) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            } else if (hora === 15) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            } else if (hora === 20) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            } else if (hora === 21) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            } else if (hora === 22) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            } else if (hs === 230) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            } else if (hs === 231) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            } else if (hs === 232) {
+                open.style.display='';
+                close.style.display='none';
+                nav.style.display='';
+            }else {
+                open.style.display='none';
+                nav.style.display='none';
+                close.style.display='';
+            }
+    </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script type="text/javascript">
+    var slideUp ={
+    delay: 10,
+    distance: '50px',
+    duration: 900,
+    easing: 'cubic-bezier(0.5, 0, 0, 1)',
+    interval: 2,
+    opacity: 0.2,
+    origin: 'bottom',
+    rotate: {
+        x: 0,
+        y: 0,
+        z: 0,
+    },
+    scale: 1.02,
+    cleanup: true,
+    container: document.documentElement,
+    desktop: true,
+    mobile: true,
+    reset: true,
+    useDelay: 'always',
+    viewFactor: 2,
+    viewOffset: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+    },
+    afterReset: function (el) {},
+    afterReveal: function (el) {},
+    beforeReset: function (el) {},
+    beforeReveal: function (el) {},
+    };
+    var slide ={
+    delay: 10,
+    distance: '10px',
+    duration: 900,
+    easing: 'cubic-bezier(0.5, 0, 0, 1)',
+    interval: 14,
+    opacity: 0.2,
+    origin: 'top',
+    rotate: {
+        x: 0,
+        y: 0,
+        z: 0,
+    },
+    scale: 1,
+    cleanup: true,
+    container: document.documentElement,
+    desktop: true,
+    mobile: true,
+    reset: true,
+    useDelay: 'always',
+    viewFactor: 0,
+    viewOffset: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+    },
+    afterReset: function (el) {},
+    afterReveal: function (el) {},
+    beforeReset: function (el) {},
+    beforeReveal: function (el) {},
+    };
+        ScrollReveal().reveal('.card', slideUp);
+        ScrollReveal().reveal('.head', slide);
+        ScrollReveal().reveal('.logo', slide);
+        ScrollReveal().reveal('.state-close', slide);
+        ScrollReveal().reveal('.state-open', slide);
+        ScrollReveal().reveal('.back', slide);
+
+    </script>
+</body>
+</html>
