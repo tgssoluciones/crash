@@ -1,0 +1,305 @@
+/* -----------form------------ */
+@import url(https://fonts.googleapis.com/css2?family=Varela+Round&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;800;900&display=swap);
+
+
+html {
+    height: 100%;
+    background-color: #4b4b4b;
+    position:relative;
+    }
+
+body {
+  text-align: center;
+  align-content: center;
+  background-color: #4b4b4b;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: 'Fredoka One', display;
+}
+
+footer{
+  font-size: 10px;
+  font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+  color: rgb(214, 214, 214);
+  padding: 0.2rem;
+  padding-top: 3rem;
+}
+
+.back{
+  position: fixed;
+  left: 25px;
+  top: 18.5px;
+  margin: none;
+  z-index: 10;
+}
+
+.back .btn {
+  background: #4b4b4b;
+  color: rgb(201, 201, 201);
+  box-shadow: inset  6px 6px 12px #343434, inset -6px -6px 12px #626262;
+  -webkit-box-shadow: inset  6px 6px 12px #343434, inset -6px -6px 12px #626262;
+  border-radius: 100%;
+  margin: none;
+}
+
+.btn-ok{
+  background: transparent;
+  color: rgb(255, 255, 255);
+  font-family: 'Fredoka One', cursive;
+  border-radius: 15px;
+  padding: 0.4rem 2rem;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border: none !important;
+  box-shadow:  6px 6px 12px #343434,-6px -6px 12px #626262;
+  -webkit-box-shadow:  6px 6px 12px #343434,-6px -6px 12px #626262;
+}
+
+.box-switch{
+  border-radius: 18px;
+  box-shadow: 6px 6px 12px #343434,
+ -6px -6px 12px #626262;
+  -webkit-box-shadow: 6px 6px 12px #343434,
+ -6px -6px 12px #626262;
+ padding: 0.4rem;
+ text-align: right;
+ padding-right: 20px;
+}
+
+.box-switch h4{
+  display: inline;
+  position: absolute;
+  left: 20px;
+  top: 8px;
+  font-size: 17px;
+}
+
+.head{
+  z-index: 9;
+  background: linear-gradient(180deg, #FF6824 0%, #FFDF00 100%);
+  padding: 0.2rem 2rem;
+  border-radius: 18px;
+  margin-bottom: 15px;
+  margin-top: -10px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.categoria{
+  color: rgb(255, 255, 255);
+  font-weight: 900;
+  margin-top: 5px; 
+  font-size: 22px;
+  padding-left: 10px;
+  border-radius: 12px 12px 0px 0px;
+  cursor: none;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+  color: rgb(255, 255, 255);
+   background-color: rgb(255, 145, 0);
+ outline: 0;
+ -webkit-box-shadow: none;
+ box-shadow: none;
+ border: none;
+}
+
+#octxt{
+  z-index: 9;
+  background: #4b4b4b;
+  color: rgb(240, 240, 240);
+  box-shadow:  6px 6px 12px #343434, -6px -6px 12px #626262;
+  -webkit-box-shadow:  6px 6px 12px #343434, -6px -6px 12px #626262;
+  padding: 0.5rem 2rem;
+  border-radius: 18px;
+  margin-top: 5px;
+  justify-content: center;
+  font-family: 'Quicksand', sans-serif;
+  margin-bottom: -20px;
+}
+
+#octxt h6{
+  margin-bottom: 2px;
+}
+
+.fondo-carrito{
+ padding-top: 10px;
+ background: #4b4b4b;
+ box-shadow: inset 6px 6px 12px #343434, inset -6px -6px 12px #626262;
+ -webkit-box-shadow: inset 6px 6px 12px #343434, inset -6px -6px 12px #626262;
+  border-radius: 22px;
+}
+
+#total{
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 25px;
+  font-family: 'Varela Round', sans-serif;
+}
+
+#listacompra{
+  font-size: 18px;
+  color: white; 
+  background-color: transparent;
+  font-weight: 500;
+}
+
+.fondo-carrito h5{
+  color: white;
+  font-size: 19px;
+  letter-spacing: 1px; 
+  margin-top: 5px;
+  margin-left: 25px;
+  text-align: left;
+}
+
+.table{
+  color: black;
+  align-content: center;
+}
+
+.container {
+-webkit-animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes fade-in-bottom {
+0% {
+  -webkit-transform: translateY(50px);
+          transform: translateY(50px);
+  opacity: 0;
+}
+100% {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+}
+}
+@keyframes fade-in-bottom {
+0% {
+  -webkit-transform: translateY(50px);
+          transform: translateY(50px);
+  opacity: 0;
+}
+100% {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+}
+}
+
+#map {
+  height: 60%;
+  border-radius: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.center input{
+  margin-bottom: 50px;
+}
+
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;  
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+  background-color: red;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: rgb(0, 0, 0);
+  font-family: Roboto;
+}
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+  color: red;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px; 
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;  
+}
+
+#pac-input:focus {
+  border-color:rgb(244, 216, 7);
+}
+
+#title {
+  color: rgb(0, 0, 0);
+  background-color: #000000;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+
+#target {
+  width: 345px;  
+}
+
+.form-control{
+  padding: 0.8rem 2rem;
+  border-radius: 22px;
+  border: 1px solid transparent;
+  background: #4b4b4b;
+  box-shadow:  6px 6px 12px #343434,-6px -6px 12px #626262;
+  -webkit-box-shadow:  6px 6px 12px #343434,-6px -6px 12px #626262;
+  transition: ease-in-out 1s;
+  color: white;
+}
+
+.input-group-text{
+  border-radius: 22px;
+  background: #575757;
+  border: none;
+  color: white;
+  box-shadow:  6px 6px 12px #343434,-6px -6px 12px #626262;
+  -webkit-box-shadow:  6px 6px 12px #343434,-6px -6px 12px #626262;
+  -moz-box-shadow:  6px 6px 12px #343434,-6px -6px 12px #626262;
+}
+
+::placeholder { color: rgb(0, 0, 0); }
+
+.form-control:focus{
+  padding: 0.5rem 2rem;
+  border-radius: 22px;
+  background: #4b4b4b;
+ box-shadow: inset 6px 6px 12px #343434,
+             inset -6px -6px 12px #626262;
+ -webkit-box-shadow: inset 6px 6px 12px #343434,
+             inset -6px -6px 12px #626262;
+ border: none;
+
+ transition: ease-in-out 1s;
+  color: white;
+}
